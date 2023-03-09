@@ -395,12 +395,12 @@ class N1081B:
             #self.ws.close()
             return json.loads(r)
 
-    def configure_pulse_generator(self, section, statistics_mode, width, frequency, enable0, enable1, enable2, enable3):
+    def configure_pulse_generator(self, section, statistics_mode, width, period, enable0, enable1, enable2, enable3):
         #ws = create_connection(self.API_ENDPOINT)
         if self.ws.connected:
             self.ws.send('{"command":"configure_function", "callback":"pulse_generator", "params":{"section":' + self.__int_to_str(section.value)
                     + ', "frequency_type":' + self.__int_to_str(statistics_mode.value) + ', "width":' + self.__int_to_str(width)
-                    + ', "period":' + self.__int_to_str(frequency) + ', "lemo_enables":[{"lemo":0, "enable":' + self.__bool_to_str(enable0)
+                    + ', "period":' + self.__int_to_str(period) + ', "lemo_enables":[{"lemo":0, "enable":' + self.__bool_to_str(enable0)
                     + '}, {"lemo":1, "enable":' + self.__bool_to_str(enable1) + '}, {"lemo":2, "enable":' + self.__bool_to_str(enable2)
                     + '}, {"lemo":3, "enable":' + self.__bool_to_str(enable3) + '}]}}')
             r = self.ws.recv()
