@@ -1,0 +1,15 @@
+stages:
+  - push
+
+
+push_github:
+  stage: push
+ 
+
+  image: registry.lanni/nibuntu/services-20.04:latest
+
+  script:
+    - git config --global --add safe.directory '*'
+    - git config remote.github_cicd.url >&- || git remote add github_cicd https://NuclearInstruments:${GITHUB_TOKEN}@github.com/NuclearInstruments/N1081B-SDK-Python.git
+    - git push -u github_cicd HEAD:master --force
+
