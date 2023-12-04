@@ -142,6 +142,30 @@ class N1081B:
         else:
             return False
         
+    def login(self, password):
+        if self.ws.connected:
+            self.ws.send('{"command":"login", "callback":"login", "pwd":"' + password + '"}')
+            r = self.ws.recv()   
+            response = json.loads(r)
+            if (response["Result"]):
+                return True
+            else:
+                return False      
+        else:
+            return False   
+
+    def change_password(self, password):
+        if self.ws.connected:
+            self.ws.send('{"command":"change_password", "callback":"login", "pwd":"' + password + '"}')
+            r = self.ws.recv()   
+            response = json.loads(r)
+            if (response["Result"]):
+                return True
+            else:
+                return False      
+        else:
+            return False         
+        
     def set_section_function(self, section, function):
         #ws = create_connection(self.API_ENDPOINT)
         if self.ws.connected:
