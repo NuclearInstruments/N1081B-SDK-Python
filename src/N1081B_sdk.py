@@ -243,7 +243,7 @@ class N1081B:
         self.__config_logic5(section, "majority_veto", enable0, enable1, enable2, enable3, enable4, False, 0)
 
     def configure_lut(self, section, i_enable0, i_enable1, i_enable2, i_enable3, i_enable4, i_enable5, o_enable0,
-                      o_enable1, o_enable2, o_enable3, file_mode, file_name, file_content, file_lines):
+                      o_enable1, o_enable2, o_enable3, file_mode, file_name, file_content, file_lines, number_input):
         #ws = create_connection(self.API_ENDPOINT)
         if self.ws.connected:
             if file_mode == self.FileMode.FILE_EXISTING:
@@ -266,7 +266,7 @@ class N1081B:
                         + '}, {"lemo":3, "enable":' + self.__bool_to_str(i_enable3) + '}, {"lemo":4, "enable":'
                         + self.__bool_to_str(i_enable4) + '}, {"lemo":5, "enable":' + self.__bool_to_str(i_enable5)
                         + '}], "file_mode":1, "file_name":"' + file_name + '", "lut_values":' + file_content
-                        + ', "total_number":' + self.__int_to_str(file_lines) + '}}')
+                        + ', "total_number":' + self.__int_to_str(file_lines) + ', "number_input":' + self.__int_to_str(number_input) + '}}')
             r = self.ws.recv()
             #self.ws.close()
             return json.loads(r)
